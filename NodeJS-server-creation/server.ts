@@ -1,4 +1,5 @@
 import http, {Server, IncomingMessage, ServerResponse} from 'http'
+import os from 'os'
 
 const hostname: string = '127.0.0.1'
 const port: number = 5000
@@ -6,7 +7,17 @@ const port: number = 5000
 const server: Server = http.createServer(( request: IncomingMessage, response: ServerResponse) => {
     response.statusCode = 200
     response.setHeader('Content-Type' , 'text/html')
-    response.end(`<h3>Welcome to nodejs server</h3>`);
+
+    // os module
+    let osData = {
+        totalMemory: os.totalmem(),
+        freeMemory: os.freemem(),
+        homedir: os.homedir(),
+        computerName: os.hostname()
+    }
+
+    //response.end("Welcome to nodejs server</h3>")
+    response.end(`${JSON.stringify(osData)}`)
 })
 
 server.listen(port, hostname, () => {
