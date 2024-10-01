@@ -2,6 +2,7 @@ import http, {Server, IncomingMessage, ServerResponse} from 'http'
 import os from 'os'
 import fs from 'fs'
 import path from 'path'
+import { StringUtil } from './util/StringUtil'
 
 const hostname: string = '127.0.0.1'
 const port: number = 5000
@@ -31,9 +32,16 @@ const server: Server = http.createServer(( request: IncomingMessage, response: S
         })
         response.end(`${result}`)
     })
+    // response.end(`${JSON.stringify(osData)}`)
 
-    //response.end("Welcome to nodejs server</h3>")
-    response.end(`${JSON.stringify(osData)}`)
+    //string util
+    let customerName: string = 'testName'
+    let length: number = StringUtil.printLength(customerName)
+
+    let channelName: string = 'technologies'
+    let result: string = StringUtil.printTriangle(channelName)
+
+    response.end(`length is ${length}, triangle: ${result}`)
 })
 
 server.listen(port, hostname, () => {
