@@ -8,6 +8,17 @@ const server:Server = http.createServer((request: IncomingMessage, response: Ser
     response.statusCode = 200
     response.setHeader('Content-Type', 'text/html')
     apiRouter.mapRoutes(request, response)
+
+    if (request.url === '/user' && request.method === 'POST'){
+        let body:any = ''
+        request.on('data', (chunk) => {
+            body += chunk
+        }).on('end', () => {
+            let formData = JSON.parse(body)
+            response.end(`${JSON.stringify(formData)}`)
+        })
+    }
+    
 })
 
 server.listen(port, hostname, () => {
