@@ -1,3 +1,5 @@
+//basic routing for testing
+
 import http from 'http'
 
 export class apiRouter{
@@ -7,7 +9,7 @@ export class apiRouter{
         let result:string = ''
 
         if (url === '/' && method === 'GET'){
-            result = "Welcome to server"
+            result = "Welcome to the server"
         }
         else if (url === '/about' && method === 'GET'){
             result = "About page"
