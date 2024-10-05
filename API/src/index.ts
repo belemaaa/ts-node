@@ -25,7 +25,7 @@ const server: Server = http.createServer(app)
 const port: number = 8080
 const hostname: string = "http://localhost"
 
-server.listen(8080, () => {
+server.listen(port, () => {
     console.log(`Server is running on ${hostname}:${port}/`)
 })
 
