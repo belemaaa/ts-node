@@ -10,13 +10,18 @@ const server:Server = http.createServer((request: IncomingMessage, response: Ser
     apiRouter.mapRoutes(request, response)
 
     if (request.url === '/user' && request.method === 'POST'){
-        let body:any = ''
+        try{
+          let body:any = ''
         request.on('data', (chunk) => {
             body += chunk
         }).on('end', () => {
             let formData = JSON.parse(body)
             response.end(`${JSON.stringify(formData)}`)
-        })
+        })  
+        }
+        catch(error){
+            console.error(error)
+        }
     }
     
 })
