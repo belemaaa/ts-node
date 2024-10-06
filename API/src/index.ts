@@ -34,7 +34,7 @@ const MONGO_URL = `mongodb+srv://${process.env.MONGO_USERNAME || 'defaultUsernam
 
 mongoose.Promise = Promise
 mongoose.connect(MONGO_URL)
-    .then(() => console.log('Connected to MongoDB'))
-    .catch((error) => console.error('MongoDB connection error:', error));
+    .then(() => console.log('\nConnected to MongoDB'))
+    .catch((error) => console.error('\nMongoDB connection error:', error));
 
 app.use('/', router)
