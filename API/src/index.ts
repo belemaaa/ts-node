@@ -7,6 +7,7 @@ import cors from 'cors'
 import { Server } from 'http'
 import mongoose from 'mongoose'
 import dotenv from 'dotenv'
+import router from './router'
 
 dotenv.config()
 
@@ -36,4 +37,4 @@ mongoose.connect(MONGO_URL)
     .then(() => console.log('Connected to MongoDB'))
     .catch((error) => console.error('MongoDB connection error:', error));
 
-// console.log(MONGO_URL)
+app.use('/', router)

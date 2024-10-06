@@ -1,9 +1,9 @@
 import express from 'express'
-import { createUser, getUserByEmail } from '../db/users'
+import { createUser, getUserByEmail } from '../db/user'
 import { generateSalt } from '../helpers'
 import { authentication } from '../helpers/index';
 
-export const register = async (req: express.Request, res: express.Response) => {
+export const register = async (req: express.Request, res: express.Response): Promise<express.Response> => {
     try{
         const { username, email, password} = req.body
         if (!username || !email || !password){
@@ -25,7 +25,7 @@ export const register = async (req: express.Request, res: express.Response) => {
                 password: authentication(salt, password),
             }
         })
-        return res.status(200).json(user).end()
+        return res.status(201).json(user).end()
 
     } catch(error){
         console.log(error)
